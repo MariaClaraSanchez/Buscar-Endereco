@@ -11,8 +11,8 @@ class Planilha:
 
     def formatar_planilha(self) -> None:
         """Função responsável pela formatação da planilha,
-            ela coloca a guia com a data atual e renomeia as colunas para 
-            receber os novos parâmetros, e coloca quebra de linha.
+            renomeia as colunas para receber os novos parâmetros
+            Rua, Bairro, Cidade e CEP.
         """
 
         self.sheetEndereco['A1'] = "Rua"
@@ -20,23 +20,15 @@ class Planilha:
         self.sheetEndereco['C1'] = "Cidade"
         self.sheetEndereco['D1'] = "CEP"
 
-        self.sheetEndereco['A1'].font = Font(
-            size=18, bold=True)
-        self.sheetEndereco['B1'].font = Font(
-            size=18, bold=True)
-        self.sheetEndereco['C1'].font = Font(
-            size=18, bold=True)
-        self.sheetEndereco['D1'].font = Font(
-            size=18, bold=True)
+        self.sheetEndereco['A1'].font = Font(size=18, bold=True)
+        self.sheetEndereco['B1'].font = Font(size=18, bold=True)
+        self.sheetEndereco['C1'].font = Font(size=18, bold=True)
+        self.sheetEndereco['D1'].font = Font(size=18, bold=True)
 
-        self.sheetEndereco['A1'].alignment = Alignment(
-            horizontal='center', vertical='center')
-        self.sheetEndereco['B1'].alignment = Alignment(
-            horizontal='center', vertical='center')
-        self.sheetEndereco['C1'].alignment = Alignment(
-            horizontal='center', vertical='center')
-        self.sheetEndereco['D1'].alignment = Alignment(
-            horizontal='center', vertical='center')
+        self.sheetEndereco['A1'].alignment = Alignment(horizontal='center', vertical='center')
+        self.sheetEndereco['B1'].alignment = Alignment(horizontal='center', vertical='center')
+        self.sheetEndereco['C1'].alignment = Alignment(horizontal='center', vertical='center')
+        self.sheetEndereco['D1'].alignment = Alignment(horizontal='center', vertical='center')
 
         self.sheetEndereco.column_dimensions['A'].width = 50
         self.sheetEndereco.column_dimensions['B'].width = 50
@@ -46,9 +38,9 @@ class Planilha:
         self.arquivo_excel.save('endereco.xlsx')
 
     def escreve_dados(self, dados: dict) -> None:
-        """Função resonsável por inserir os dados na planilha.
+        """Função responsável por inserir os dados na planilha.
         Args:
-            dados_vagas (dict): recebe um dicionário contendo os endereco
+            dados(dict): recebe um dicionário contendo as informações de cada endereco
         """
         i = 0
         for endereco in dados:

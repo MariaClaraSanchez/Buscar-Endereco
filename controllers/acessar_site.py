@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 import time
 
 
@@ -15,12 +14,18 @@ class Site:
         chrome_options.add_argument('disable-infobars')
         chrome_options.add_argument('--log-level=3')
 
-        self.driver = webdriver.Chrome(caminho_driver,
-                                       options=chrome_options)
+        self.driver = webdriver.Chrome(caminho_driver,options=chrome_options)
 
     def acessar_correios(self) -> dict:
-        """Acessa o site do google
+        """ Acessa o site dos correios, com o intuito de obter
+        as informações de cada cep
+
+        Returns:
+            dict: retorna um dicionário com os dados obtidos no site,
+            nome da rua, bairro e cidade, e a chave para encontrar as 
+            informações é o próprio CEP
         """
+        
         lista_ceps = ['37713-300','28953-818','28954-785','28959-100']
         #lista_ceps = ['37713-300','28953-818']
         self.driver.get('https://buscacepinter.correios.com.br/app/endereco/index.php')
@@ -52,8 +57,6 @@ class Site:
                 'bairro': bairro,
                 'cidade': cidade
             }})
-            
-            
             
             time.sleep(4)
             self.driver.find_element(By.XPATH,xpath_voltar).click()
